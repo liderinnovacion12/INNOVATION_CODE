@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>INNOVATION CODE SERVICES SAS · Software, automatización y robótica</title>
+    <meta
+      name="description"
+      content="Desarrollamos software a medida, aplicaciones web, plataformas empresariales, automatización y soluciones robóticas. Convertimos ideas en tecnología que transforma."
+    />
+    <meta name="theme-color" content="#05060A" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="INNOVATION CODE SERVICES SAS" />
+    <meta property="og:title" content="INNOVATION CODE SERVICES SAS · El futuro no se espera. Se programa." />
+    <meta
+      property="og:description"
+      content="Software a medida, automatización de procesos y soluciones robóticas que conectan lo digital con el mundo físico."
+    />
+    <meta property="og:locale" content="es" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "INNOVATION CODE SERVICES SAS",
+        "description": "Desarrollo de software, soluciones tecnológicas y robótica."
+      }
+    </script>
+    <script>
+      // Aplica el tema guardado antes del primer pintado (evita parpadeo). Por defecto: oscuro.
+      (function () {
+        var t = 'dark';
+        try { if (localStorage.getItem('ics:theme') === 'light') t = 'light'; } catch (e) {}
+        document.documentElement.dataset.theme = t;
+        if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F4F6FB');
+      })();
+    </script>
+    <style>
+      html, body { background: #05060a; color: #eaf2ff; }
+      html[data-theme='light'], html[data-theme='light'] body { background: #f4f6fb; color: #0a0d16; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <main style="font-family: system-ui, sans-serif; max-width: 640px; margin: 15vh auto; padding: 0 16px">
+        <h1>INNOVATION CODE SERVICES SAS</h1>
+        <p>Convertimos ideas en tecnología que transforma: software a medida, aplicaciones web, plataformas empresariales, automatización, robótica e integración de hardware y software.</p>
+        <p>Activa JavaScript para vivir la experiencia completa.</p>
+      </main>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
