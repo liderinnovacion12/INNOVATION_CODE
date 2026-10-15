@@ -124,7 +124,7 @@ export default function RealWorld() {
                   </li>
                 ))}
               </ol>
-              <p className="border-t border-line px-5 py-3 font-mono text-xs text-volt-300" aria-live="polite">
+              <p className="border-t border-line px-5 py-3 font-mono text-xs text-brand-300" aria-live="polite">
                 &gt; {realWorldProgram[step].log}
               </p>
             </div>
@@ -146,7 +146,7 @@ export default function RealWorld() {
                 </div>
                 <div>
                   <dt>Pinza</dt>
-                  <dd className={pose.grip ? 'text-crimson-300' : 'text-volt-300'}>{pose.grip ? 'Cerrada' : 'Abierta'}</dd>
+                  <dd className={pose.grip ? 'text-accent-300' : 'text-brand-300'}>{pose.grip ? 'Cerrada' : 'Abierta'}</dd>
                 </div>
               </dl>
               <p className="absolute right-4 top-4 font-mono text-[10px] uppercase tracking-[0.2em] text-frost-600">Simulación ilustrativa</p>

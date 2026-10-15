@@ -8,9 +8,11 @@
       name="description"
       content="Desarrollamos software a medida, aplicaciones web, plataformas empresariales, automatización y soluciones robóticas. Convertimos ideas en tecnología que transforma."
     />
-    <meta name="theme-color" content="#05060A" />
+    <meta name="theme-color" content="#F3F7FC" />
     <meta name="color-scheme" content="dark light" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:image" content="/brand/logo-ics.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="INNOVATION CODE SERVICES SAS" />
@@ -26,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@600;700;800&family=Sora:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     />
 
     <script type="application/ld+json">
@@ -38,17 +40,17 @@
       }
     </script>
     <script>
-      // Aplica el tema guardado antes del primer pintado (evita parpadeo). Por defecto: oscuro.
+      // Aplica el tema guardado antes del primer pintado (evita parpadeo). Por defecto: claro.
       (function () {
-        var t = 'dark';
-        try { if (localStorage.getItem('ics:theme') === 'light') t = 'light'; } catch (e) {}
+        var t = 'light';
+        try { if (localStorage.getItem('ics:theme-v2') === 'dark') t = 'dark'; } catch (e) {}
         document.documentElement.dataset.theme = t;
-        if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F4F6FB');
+        if (t === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#040A18');
       })();
     </script>
     <style>
-      html, body { background: #05060a; color: #eaf2ff; }
-      html[data-theme='light'], html[data-theme='light'] body { background: #f4f6fb; color: #0a0d16; }
+      html { background: #f3f7fc; color: #0b1d37; }
+      html[data-theme='dark'] { background: #040a18; color: #ecf4ff; }
     </style>
   </head>
   <body>

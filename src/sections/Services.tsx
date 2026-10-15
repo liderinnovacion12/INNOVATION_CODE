@@ -86,13 +86,13 @@ export default function Services() {
             <ServiceMedia mod={mod} />
             <div key={mod.id} className="panel-swap mt-8">
               <h3 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{mod.name}</h3>
-              <p className="mt-2 text-lg text-volt-300">{mod.short}</p>
+              <p className="mt-2 text-lg text-brand-300">{mod.short}</p>
               <p className="mt-5 max-w-xl leading-relaxed text-frost-200">{mod.description}</p>
 
               <ul className="mt-7 grid gap-x-8 sm:grid-cols-2">
                 {mod.capabilities.map((c) => (
                   <li key={c} className="flex items-center gap-3 border-t border-line py-3 text-sm text-frost-200">
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-crimson" aria-hidden="true" />
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                     {c}
                   </li>
                 ))}

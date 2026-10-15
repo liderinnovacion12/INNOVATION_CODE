@@ -1,5 +1,5 @@
 import { company, contact, legal, services, social } from '../../config/site';
-import { LogoMark } from '../ui/LogoMark';
+import { LogoMark, Wordmark } from '../ui/LogoMark';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -11,8 +11,9 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
-              <LogoMark className="h-10 w-10" />
-              <p className="font-display text-sm font-semibold uppercase tracking-[0.2em]">{company.legalName}</p>
+              <LogoMark className="h-11 w-auto" />
+              <Wordmark sub="Code Services SAS" />
+              <span className="sr-only">{company.legalName}</span>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-frost-400">{company.summary}</p>
           </div>
@@ -59,7 +60,7 @@ export function Footer() {
         </div>
 
         <p className="footer-wordmark" aria-hidden="true">
-          INNOVATION<span className="text-gradient">CODE</span>
+          INNOVATION <span className="text-gradient">CODE</span>
         </p>
 
         <div className="flex flex-col gap-4 border-t border-line py-6 text-xs text-frost-600 sm:flex-row sm:items-center sm:justify-between">

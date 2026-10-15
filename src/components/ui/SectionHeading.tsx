@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <header className={`max-w-4xl ${className}`}>
       <Reveal as="p" className="eyebrow">
-        <span className="text-crimson-300">{index}</span>
+        <span className="text-accent-300">{index}</span>
         <span className="eyebrow__rule" aria-hidden="true" />
         {label}
       </Reveal>

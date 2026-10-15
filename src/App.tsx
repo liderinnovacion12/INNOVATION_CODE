@@ -3,6 +3,7 @@ import { navSections } from './config/site';
 import { Header } from './components/layout/Header';
 import { ScrollRail } from './components/layout/ScrollRail';
 import { Footer } from './components/layout/Footer';
+import { TechBackground } from './components/background/TechBackground';
 import Hero from './sections/Hero';
 import Manifesto from './sections/Manifesto';
 import { useScrollSpy } from './hooks/useScrollSpy';
@@ -62,12 +63,13 @@ export default function App() {
   return (
     <>
       {introOpen && (
-        <Suspense fallback={<div className="intro force-dark" aria-hidden="true" />}>
+        <Suspense fallback={<div className="intro" aria-hidden="true" />}>
           <Intro onDone={finishIntro} />
         </Suspense>
       )}
 
       <div ref={pageRef}>
+        <TechBackground />
         <a href="#main" className="skip-link">
           Saltar al contenido
         </a>

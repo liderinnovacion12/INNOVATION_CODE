@@ -133,7 +133,7 @@ export default function Projects() {
               <h3 id="project-dialog-title" className="mt-4 font-display text-3xl font-semibold tracking-tight">
                 {open.title}
               </h3>
-              <p className="text-volt-300">{open.subtitle}</p>
+              <p className="text-brand-300">{open.subtitle}</p>
               <p className="mt-5 leading-relaxed text-frost-200">{open.summary}</p>
               <h4 className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-frost-400">Desafío</h4>
               <p className="mt-2 text-sm leading-relaxed text-frost-200">{open.challenge}</p>
@@ -141,7 +141,7 @@ export default function Projects() {
               <ul className="mt-2 space-y-1.5 text-sm text-frost-200">
                 {open.approach.map((a) => (
                   <li key={a} className="flex gap-3">
-                    <span className="text-crimson-300" aria-hidden="true">▹</span>
+                    <span className="text-accent-300" aria-hidden="true">▹</span>
                     {a}
                   </li>
                 ))}

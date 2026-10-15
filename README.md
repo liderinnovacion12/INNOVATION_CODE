@@ -36,11 +36,15 @@ agrega en `src/config/site.ts` la línea `video: media('nombre-del-archivo')` al
 para saltar los primeros 1,2 s en cada vuelta). Se reproducen silenciados, en bucle y solo mientras están en pantalla;
 los módulos sin video muestran su firma visual.
 
-## Tema claro / oscuro
+## Marca, paleta y tema
 
-El botón de la cabecera alterna entre vista oscura (por defecto, identidad de marca) y clara; la elección se guarda en `localStorage` (`ics:theme`).
-Los colores son tokens RGB definidos en `src/styles/index.css` (`:root` y `:root[data-theme='light']`) y expuestos a Tailwind en `tailwind.config.js`
-(`void` = superficies, `frost` = texto, `ink` = líneas). La intro y el editor de código usan la clase `.force-dark` y siempre se ven oscuros.
+- Logo oficial en `public/brand/` (`ics-mark.png` = símbolo «ICS», `logo-ics.png` = logo completo); favicons generados a partir de él.
+- Paleta tomada del logo: navy `#0B1D37`, azul profundo `#003384`, azul principal `#0057D3`, azul brillante `#0A84EE`, cian `#00B9F9`.
+  En Tailwind: `brand` (azul) y `accent` (cian); superficies `void`, texto `frost`, líneas `line`.
+- El sitio **abre en modo claro**; el botón de la cabecera cambia a oscuro y la elección se guarda (`localStorage`, clave `ics:theme-v2`).
+  Los tokens de cada tema están en `src/styles/index.css` (`:root` = oscuro, `:root[data-theme='light']` = claro).
+- Fondo animado global (`src/components/background/`): red de nodos, pistas de circuito con pulsos y fragmentos de código;
+  reacciona al cursor y al scroll, y queda estático con movimiento reducido.
 
 ## Intro
 

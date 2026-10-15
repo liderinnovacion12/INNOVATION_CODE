@@ -1,7 +1,7 @@
 export type Theme = 'dark' | 'light';
 
-export const THEME_KEY = 'ics:theme';
-const THEME_COLOR: Record<Theme, string> = { dark: '#05060A', light: '#F4F6FB' };
+export const THEME_KEY = 'ics:theme-v2';
+const THEME_COLOR: Record<Theme, string> = { dark: '#040A18', light: '#F3F7FC' };
 
 /** El tema inicial lo fija un script en index.html antes del primer pintado (sin parpadeo). */
 export const getTheme = (): Theme =>

@@ -67,7 +67,7 @@ export default function Manifesto() {
         <div className="shell relative w-full">
           <div className="mb-10 flex items-center gap-4">
             <h2 id="manifiesto-title" className="eyebrow">
-              <span className="text-crimson-300">01</span>
+              <span className="text-accent-300">01</span>
               <span className="eyebrow__rule" aria-hidden="true" />
               Manifiesto
             </h2>

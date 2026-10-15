@@ -8,8 +8,8 @@ import { clamp, TAU } from '../../lib/math';
 
 type V3 = [number, number, number];
 
-const RED = '255,38,56';
-const BLUE = '23,105,255';
+const CYAN = '0,185,249';
+const BLUE = '0,87,211';
 const WHITE = '234,242,255';
 const INK_LIGHT = '12,16,28';
 
@@ -45,7 +45,7 @@ const OCTA_FACES: [number, number, number][] = [];
 for (const x of [0, 1]) for (const y of [2, 3]) for (const z of [4, 5]) OCTA_FACES.push([x, y, z]);
 
 const RINGS = [
-  { r: 1.55, tx: 1.22, tz: 0.25, color: RED, speed: 0.0011, pulses: 2, alpha: 0.85, dashed: true },
+  { r: 1.55, tx: 1.22, tz: 0.25, color: CYAN, speed: 0.0011, pulses: 2, alpha: 0.85, dashed: true },
   { r: 1.9, tx: 1.78, tz: -0.5, color: BLUE, speed: -0.0008, pulses: 3, alpha: 0.85, dashed: false },
   { r: 2.3, tx: 0.92, tz: 0.9, color: WHITE, speed: 0.0005, pulses: 1, alpha: 0.32, dashed: false },
 ];
@@ -98,15 +98,15 @@ function faceNormal(a: V3, b: V3, c: V3): V3 {
 
 const dot = (a: V3, b: V3) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
-/** Color metálico con iluminación difusa y luz de borde roja (izq.) / azul (der.). */
+/** Color metálico con iluminación difusa y luz de borde cian (izq.) / azul (der.). */
 function metal(n: V3, alpha: number) {
   const diffuse = clamp(dot(n, LIGHT));
   const rim = Math.pow(1 - Math.abs(n[2]), 2.2);
   const base = 16 + 78 * diffuse;
   const left = n[0] < 0;
-  const r = base + rim * (left ? 190 : 12);
-  const g = base * 1.04 + rim * (left ? 18 : 70);
-  const b = base * 1.18 + rim * (left ? 40 : 230);
+  const r = base * 0.92 + rim * (left ? 8 : 4);
+  const g = base * 1.06 + rim * (left ? 165 : 70);
+  const b = base * 1.25 + rim * (left ? 230 : 215);
   return `rgba(${r | 0},${g | 0},${b | 0},${alpha})`;
 }
 
@@ -137,7 +137,7 @@ export function drawCore(
   // Halo de fondo
   const halo = ctx.createRadialGradient(cx, cy, S * 0.4, cx, cy, S * 3);
   halo.addColorStop(0, `rgba(${BLUE},0.16)`);
-  halo.addColorStop(0.5, `rgba(${RED},0.05)`);
+  halo.addColorStop(0.5, `rgba(${CYAN},0.05)`);
   halo.addColorStop(1, `rgba(${BLUE},0)`);
   ctx.fillStyle = halo;
   ctx.fillRect(0, 0, w, h);
@@ -255,7 +255,7 @@ export function drawCore(
   for (const face of shellFaces) {
     if (face.n[2] <= 0) continue;
     tri(face.f, shellScale);
-    ctx.strokeStyle = 'rgba(107,157,255,0.16)';
+    ctx.strokeStyle = 'rgba(92,156,255,0.16)';
     ctx.stroke();
   }
 
@@ -277,7 +277,7 @@ export function drawCore(
   const coreR = S * (0.78 + pulse * 0.08);
   const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
   core.addColorStop(0, 'rgba(255,255,255,0.95)');
-  core.addColorStop(0.16, `rgba(${RED},0.85)`);
+  core.addColorStop(0.16, `rgba(${CYAN},0.85)`);
   core.addColorStop(0.5, `rgba(${BLUE},0.35)`);
   core.addColorStop(1, `rgba(${BLUE},0)`);
   ctx.fillStyle = core;
@@ -286,7 +286,7 @@ export function drawCore(
   ctx.fill();
   for (const v of inner) {
     const [x, y] = project(v, 0.5);
-    ctx.fillStyle = `rgba(${RED},0.9)`;
+    ctx.fillStyle = `rgba(${CYAN},0.9)`;
     ctx.fillRect(x - 1.5, y - 1.5, 3, 3);
   }
   ctx.globalCompositeOperation = 'source-over';
@@ -296,7 +296,7 @@ export function drawCore(
   for (const face of front) {
     tri(face.f, shellScale);
     if (face.open) {
-      ctx.strokeStyle = face.n[0] < 0 ? `rgba(${RED},${0.55 + pulse * 0.4})` : `rgba(${BLUE},${0.6 + pulse * 0.35})`;
+      ctx.strokeStyle = face.n[0] < 0 ? `rgba(${CYAN},${0.55 + pulse * 0.4})` : `rgba(${BLUE},${0.6 + pulse * 0.35})`;
       ctx.lineWidth = 1.6;
       ctx.stroke();
       continue;

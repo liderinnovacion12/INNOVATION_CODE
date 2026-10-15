@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { company, headerNav, navSections } from '../../config/site';
-import { LogoMark } from '../ui/LogoMark';
+import { LogoMark, Wordmark } from '../ui/LogoMark';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 const links = headerNav.map((id) => navSections.find((s) => s.id === id)!);
@@ -42,12 +42,8 @@ export function Header({ active }: { active: string }) {
     <header className={`site-header ${scrolled || open ? 'is-solid' : ''}`}>
       <div className="shell flex h-16 items-center justify-between gap-6 lg:h-20">
         <a href="#inicio" className="flex items-center gap-3" aria-label={`${company.legalName} — ir al inicio`}>
-          <LogoMark className="h-9 w-9 shrink-0" />
-          <span className="font-display text-[12px] font-semibold uppercase leading-[1.15] tracking-[0.2em]" aria-hidden="true">
-            Innovation
-            <br />
-            <span className="text-frost-400">Code Services</span>
-          </span>
+          <LogoMark className="h-8 w-auto shrink-0 lg:h-9" />
+          <Wordmark className="hidden sm:inline-flex" />
         </a>
 
         <nav aria-label="Principal" className="hidden lg:block">

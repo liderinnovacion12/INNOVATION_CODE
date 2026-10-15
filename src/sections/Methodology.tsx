@@ -75,7 +75,7 @@ export default function Methodology() {
                 </p>
                 <h3 className="mt-2 font-display text-3xl font-semibold tracking-tight">{step.label}</h3>
                 <p className="mt-4 max-w-xl leading-relaxed text-frost-200">{step.description}</p>
-                <p className="mt-6 border-l-2 border-crimson pl-4 font-display text-lg italic text-frost">“{step.question}”</p>
+                <p className="mt-6 border-l-2 border-accent pl-4 font-display text-lg italic text-frost">“{step.question}”</p>
               </div>
               <div>
                 <h4 className="font-mono text-[11px] uppercase tracking-[0.2em] text-frost-400">Entregables</h4>
@@ -83,7 +83,7 @@ export default function Methodology() {
                   {step.deliverables.map((d) => (
                     <li key={d} className="flex items-center justify-between py-3 text-frost-200">
                       {d}
-                      <span className="h-1.5 w-1.5 rounded-full bg-volt" aria-hidden="true" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
                     </li>
                   ))}
                 </ul>

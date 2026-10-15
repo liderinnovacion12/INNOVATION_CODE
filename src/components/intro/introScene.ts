@@ -1,25 +1,26 @@
 import { clamp, easeInOutCubic, easeOutCubic, easeOutExpo, lerp, TAU } from '../../lib/math';
 
 /**
- * Escena de la intro (canvas 2D, sin dependencias). Cada partícula tiene una
+ * Escena de la intro (colores del logo: cian #00B9F9 y azul #0057D3) (canvas 2D, sin dependencias). Cada partícula tiene una
  * posición que es función pura del tiempo, así la animación es estable ante
  * cambios de tamaño y no acumula estado entre fotogramas.
  *
- *  0 ─ T1  convergencia: partículas rojas (izq.) y azules (der.) en espiral al centro
- * T1 ─ T2  singularidad: órbita comprimida + ondas rojo/azul que colisionan
+ *  0 ─ T1  convergencia: partículas cian (izq.) y azules (der.) en espiral al centro
+ * T1 ─ T2  singularidad: órbita comprimida + ondas cian/azul que colisionan
  * T2 ─ T3  expansión: onda expansiva, destello y reorganización en anillos orbitales
  */
 export const T1 = 1500;
 export const T2 = 1950;
 export const T3 = 3700;
 
-const RED = '255,38,56';
-const BLUE = '23,105,255';
-const BLUE_LIGHT = '107,157,255';
-const WHITE = '234,242,255';
+const CYAN = '0,185,249';
+const BLUE = '0,87,211';
+const BLUE_LIGHT = '92,156,255';
+/** Color de contraste: blanco frío en oscuro, navy del logo en claro (se fija en drawScene). */
+let WHITE = '234,242,255';
 const RING_FACTOR = [0.7, 0.88, 1.06];
 const RING_SPEED = [0.00016, -0.00011, 0.00007];
-const RING_COLOR = [RED, BLUE, WHITE];
+const ringColor = (i: number) => [CYAN, BLUE, WHITE][i];
 const GLYPHS = ['{', '}', '</>', '01', '=>', '[]', ';', '#', 'fn', '0x', '&&', '//'];
 
 interface Particle {
@@ -138,7 +139,7 @@ function drawCore(ctx: CanvasRenderingContext2D, cx: number, cy: number, m: numb
   }
   const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
   g.addColorStop(0, `rgba(${WHITE},${a})`);
-  g.addColorStop(0.18, `rgba(${RED},${a * 0.75})`);
+  g.addColorStop(0.18, `rgba(${CYAN},${a * 0.75})`);
   g.addColorStop(0.55, `rgba(${BLUE},${a * 0.35})`);
   g.addColorStop(1, `rgba(${BLUE},0)`);
   ctx.fillStyle = g;
@@ -159,7 +160,7 @@ function drawWaves(ctx: CanvasRenderingContext2D, w: number, h: number, cx: numb
     const front = side < 0 ? lerp(-40, cx, e) : lerp(w + 40, cx, e);
     const ccx = front + side * R;
     const a0 = side < 0 ? -span : Math.PI - span;
-    const col = side < 0 ? RED : BLUE;
+    const col = side < 0 ? CYAN : BLUE;
     ctx.strokeStyle = `rgba(${col},0.14)`;
     ctx.lineWidth = 34 * e + 6;
     ctx.beginPath();
@@ -179,7 +180,7 @@ function drawRingLinks(ctx: CanvasRenderingContext2D, scene: Scene, w: number, h
   const maxD = Math.min(w, h) * 0.16;
   ctx.lineWidth = 0.7;
   scene.rings.forEach((ring, i) => {
-    ctx.strokeStyle = `rgba(${RING_COLOR[i]},${a})`;
+    ctx.strokeStyle = `rgba(${ringColor(i)},${a})`;
     ctx.beginPath();
     for (let j = 0; j < ring.length; j++) {
       locate(ring[j], t, w, h, cur);
@@ -202,7 +203,7 @@ function drawParticles(ctx: CanvasRenderingContext2D, scene: Scene, w: number, h
   for (const p of scene.particles) {
     locate(p, t, w, h, cur);
     if (cur.alpha <= 0.01) continue;
-    const col = p.hue === 0 ? RED : p.kind === 1 ? BLUE_LIGHT : BLUE;
+    const col = p.hue === 0 ? CYAN : p.kind === 1 ? BLUE_LIGHT : BLUE;
     const a = cur.alpha * (t > T3 ? 0.65 + 0.35 * Math.sin(t * 0.003 + p.phase) : 1);
 
     if (p.kind === 0) {
@@ -241,7 +242,7 @@ function drawParticles(ctx: CanvasRenderingContext2D, scene: Scene, w: number, h
 
 function drawShockwaves(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number) {
   const waves: [number, string][] = [
-    [T2, RED],
+    [T2, CYAN],
     [T2 + 110, BLUE],
     [T2 + 260, WHITE],
   ];
@@ -258,12 +259,13 @@ function drawShockwaves(ctx: CanvasRenderingContext2D, cx: number, cy: number, w
   }
 }
 
-export function drawScene(ctx: CanvasRenderingContext2D, scene: Scene, w: number, h: number, t: number) {
+export function drawScene(ctx: CanvasRenderingContext2D, scene: Scene, w: number, h: number, t: number, light = false) {
+  WHITE = light ? '11,29,55' : '234,242,255';
   const cx = w / 2;
   const cy = h / 2;
   const m = Math.min(w, h);
   ctx.clearRect(0, 0, w, h);
-  ctx.globalCompositeOperation = 'lighter';
+  ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
   drawCore(ctx, cx, cy, m, t);
   drawWaves(ctx, w, h, cx, cy, t);
   drawRingLinks(ctx, scene, w, h, t);
@@ -272,7 +274,7 @@ export function drawScene(ctx: CanvasRenderingContext2D, scene: Scene, w: number
   ctx.globalCompositeOperation = 'source-over';
   if (t >= T2 && t < T2 + 450) {
     const a = Math.pow(1 - (t - T2) / 450, 2) * 0.75;
-    ctx.fillStyle = `rgba(${WHITE},${a})`;
+    ctx.fillStyle = light ? `rgba(${CYAN},${a * 0.3})` : `rgba(${WHITE},${a})`;
     ctx.fillRect(0, 0, w, h);
   }
 }

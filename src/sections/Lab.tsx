@@ -120,7 +120,7 @@ export default function Lab() {
               </ul>
 
               <p className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-frost-600" aria-hidden="true">
-                <span className="text-crimson-300">■</span> físico <span className="ml-3 text-volt-300">■</span> digital{' '}
+                <span className="text-accent-300">■</span> físico <span className="ml-3 text-brand-300">■</span> digital{' '}
                 <span className="ml-3 text-frost-200">■</span> inteligencia
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function Lab() {
           <Reveal delay={120} className="flex flex-col gap-6">
             <div className="lab-panel" aria-live="polite">
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-frost-400">
-                Lectura del nodo · <span className="text-crimson-300">{active.kind}</span>
+                Lectura del nodo · <span className="text-accent-300">{active.kind}</span>
               </p>
               <h3 className="mt-3 font-display text-3xl font-semibold tracking-tight">{active.label}</h3>
               <p className="mt-3 text-sm leading-relaxed text-frost-200">{active.description}</p>

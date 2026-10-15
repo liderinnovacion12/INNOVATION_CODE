@@ -38,8 +38,8 @@ export function ModuleGlyph({ seed, active = false, className = '' }: { seed: nu
     <svg viewBox="0 0 100 100" className={`glyph ${active ? 'is-active' : ''} ${className}`} aria-hidden="true">
       <defs>
         <linearGradient id={`${id}-g`} x1={start[0]} y1={start[1]} x2={end[0]} y2={end[1]} gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FF2638" />
-          <stop offset="1" stopColor="#1769FF" />
+          <stop stopColor="#00B9F9" />
+          <stop offset="1" stopColor="#0057D3" />
         </linearGradient>
       </defs>
       {Array.from({ length: GRID * GRID }, (_, i) => (

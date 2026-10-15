@@ -136,7 +136,7 @@ export default function Contact() {
       <div className="shell relative grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <div>
           <Reveal as="p" className="eyebrow">
-            <span className="text-crimson-300">07</span>
+            <span className="text-accent-300">07</span>
             <span className="eyebrow__rule" aria-hidden="true" />
             Contacto
           </Reveal>

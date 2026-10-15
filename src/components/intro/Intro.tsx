@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { company } from '../../config/site';
 import { useCanvasLoop } from '../../hooks/useCanvasLoop';
 import { useReducedMotion } from '../../hooks/useMedia';
+import { useTheme } from '../../hooks/useTheme';
 import { LogoMark } from '../ui/LogoMark';
 import { ScrambleText } from '../ui/ScrambleText';
 import { createScene, drawScene, T2, T3, type Scene } from './introScene';
@@ -12,6 +13,7 @@ const AUTO_ENTER = 7000;
 
 export default function Intro({ onDone }: { onDone: () => void }) {
   const reduced = useReducedMotion();
+  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const skipRef = useRef<HTMLButtonElement>(null);
   const sceneRef = useRef<Scene | null>(null);
@@ -31,7 +33,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
     (ctx, { w, h, t }) => {
       sceneRef.current ??= createScene(w, h);
       // Con movimiento reducido se pinta solo el estado final, estático.
-      drawScene(ctx, sceneRef.current, w, h, reduced ? T3 + 600 : t);
+      drawScene(ctx, sceneRef.current, w, h, reduced ? T3 + 600 : t, theme === 'light');
     },
     { animate: !reduced, maxDpr: 1.5 },
   );
@@ -58,7 +60,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
 
   return (
     <div
-      className={`intro force-dark ${exiting ? 'intro--exit' : ''} ${reduced ? 'intro--reduced' : ''}`}
+      className={`intro ${exiting ? 'intro--exit' : ''} ${reduced ? 'intro--reduced' : ''}`}
       role="dialog"
       aria-modal="true"
       aria-label={`Introducción · ${company.legalName}`}
@@ -67,13 +69,13 @@ export default function Intro({ onDone }: { onDone: () => void }) {
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
 
       <div className="relative z-10 flex flex-col items-center px-6 text-center">
-        <LogoMark className={`intro__logo h-14 w-14 sm:h-16 sm:w-16 ${stage >= 1 ? 'is-on' : ''}`} />
-        <p className="mt-6 font-display font-bold uppercase leading-none tracking-[0.04em] text-frost">
+        <LogoMark className={`intro__logo h-20 w-auto sm:h-28 ${stage >= 1 ? 'is-on' : ''}`} />
+        <p className="intro__brand mt-7 uppercase leading-none text-frost">
           <ScrambleText
             text={company.brandTop}
             active={stage >= 1}
             reduced={reduced}
-            className="text-[clamp(2rem,7.5vw,5.75rem)]"
+            className="text-[clamp(1.9rem,7vw,5.2rem)]"
           />
           <span className={`intro__sub mt-3 block text-[clamp(0.85rem,2.2vw,1.35rem)] ${stage >= 1 ? 'is-on' : ''}`}>
             {company.brandBottom}
