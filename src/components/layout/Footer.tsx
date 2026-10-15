@@ -12,7 +12,7 @@ export function Footer() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-3">
               <LogoMark className="h-11 w-auto" />
-              <Wordmark sub="Code Services SAS" />
+              <Wordmark />
               <span className="sr-only">{company.legalName}</span>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-frost-400">{company.summary}</p>

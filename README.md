@@ -1,4 +1,4 @@
-# INNOVATION CODE SERVICES SAS · Sitio web
+# INNOVATION CODE SERVICES · Sitio web
 
 React 18 + TypeScript + Vite + Tailwind CSS. Sin librerías 3D: la intro y el núcleo del hero son Canvas 2D con proyección 3D propia.
 

@@ -7,9 +7,9 @@
  */
 
 export const company = {
-  legalName: 'INNOVATION CODE SERVICES SAS',
+  legalName: 'INNOVATION CODE SERVICES',
   brandTop: 'INNOVATION',
-  brandBottom: 'CODE SERVICES SAS',
+  brandBottom: 'CODE SERVICES',
   tagline: 'Convertimos ideas en tecnología que transforma',
   summary:
     'Desarrollo de software a medida, automatización de procesos y soluciones robóticas que conectan lo digital con el mundo físico.',
